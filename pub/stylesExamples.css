@@ -1,0 +1,238 @@
+body{
+    background-color: rgb(11,11,34);
+    font-family: Verdana,sans-serif;
+}
+
+.mainBanner{
+    margin:0 auto;
+    width: 800px;
+    margin-bottom: 40px;
+}
+
+.heading{   
+    width: 800px;
+    text-align: center;
+    color: rgb(228,16,64);
+    font-size: 350%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.firstMap{
+    background-color: rgb(228,16,64);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.introParagraph{
+    text-align: center;
+    color: rgb(226,228,233);
+    font-size:  130%;
+    text-decoration: underline;
+
+}
+
+.textPara{
+    background-color: rgb(24,24,56);
+    color: rgb(226,228,233);
+    width: 800px;
+    min-height: 100px;
+}
+
+.text{
+    padding: 10px;
+    text-align: justify;
+    line-height:  1.5;
+    font-size: 15px;
+}
+
+.examplesIntro{
+    text-align: center;
+    color: rgb(228,16,64);
+    text-decoration: underline;
+}
+
+.documentationButton:hover{
+    background-color: rgb(180, 13, 52);
+    transition: 0.5s;
+}
+
+.documentationButton{
+    background-color: rgb(228,16,64); 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.list{
+    font-size: 15px;
+}
+
+.code{
+    padding: 10px;
+    line-height: 1.5;
+    font-size: 15px; 
+    word-wrap: break-word;
+    
+}
+
+.paraHeader{
+    padding: 10px;
+    text-decoration: underline;
+    color: rgb(228,16,64);
+    text-align: center;
+}
+
+.getGameStateButton:hover{
+    background-color: rgb(180, 13, 52);
+    transition: 0.5s;
+}
+
+.getGameStateButton{
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    background-color: rgb(228,16,64); 
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.nextButton{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: rgb(228,16,64); 
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;    
+}
+
+.exampleFourMapOne{
+    width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.exampleFourMapTwo{
+    width: 600px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.answerBoxText{
+    background-color: rgb(24,24,56);
+    color: rgb(226,228,233);
+    width: 800px;
+    min-height: 100px;
+    padding: 10px;
+    text-align: justify;
+    line-height:  1.5;
+    font-size: 15px;
+
+}
+
+.documentationBanner{
+    margin:0 auto;
+    width: 1000px;
+    margin-bottom: 40px;
+
+}
+
+.documentationLink{
+    text-decoration: none;
+}
+
+.operator{
+    color: #b67eb0;
+}
+
+.function{
+    color: #d9cb80;
+}
+
+.declaration{
+    color:#3957ff;
+
+}
+
+.variable{
+    color: #42aace;
+}
+
+.const{
+    color: #3c7772
+
+}
+
+.string{
+    color: #b16444;
+}
+
+.number{
+    color: #87b18c;
+}
+
+.comment{
+    color:#56794b;
+
+}
+
+.homeButton:hover{
+    background-color: rgb(180, 13, 52);
+    transition: 0.5s;    
+}
+
+.homeButton{
+    margin-top: 10px;
+    background-color: rgb(228,16,64); 
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;    
+}
+
+.homeButtonLink{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: 20px;
+    text-decoration: none;
+}
+
+.textParaDocumentation{
+    background-color: rgb(24,24,56);
+    color: rgb(226,228,233);
+    width: 1000px;
+    min-height: 100px;    
+}
+
+.paraHeaderDocumentation{
+    padding: 10px;
+    color: rgb(228,16,64);
+    
+}
+
+.functionHeader{
+    padding: 10px;
+    color: rgb(226,228,233);   
+}

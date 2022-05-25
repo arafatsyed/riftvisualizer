@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href = "stylesExamples.css">
+    <title>Document</title>
+</head>
+<body>
+
+  
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer type = "text/javascript" src='riftvisualizer.js'></script>
+    <script defer type = "text/javascript" src='examples.js'></script>
+
+    <div class = "mainBanner"> 
+        
+        <h1 class="heading"> Rift Visualizer </h1> 
+        <p class="introParagraph">A League of Legends Map Visualizer Library for Your Web App!</p>
+        <div class="textPara"> 
+        <p class="text"> 
+            
+            The Rift Visualizer library allows web developers to easily add and visualize different game states for the popular game 
+            League of Legends. If you are developing a web app that league of legends players will use to help them with their game (similar to blitz.gg and jungler.gg), then
+            this library is perfect for you. The Rift Visualizer library lets you add a dyanmic and interactive Leauge of Legends map that both the developer and user can modify and
+            interact with.
+        
+        </p>  
+
+        </div>
+            <!-- <p class="examplesIntro">Functionality</p>
+            
+            <div class="textPara">
+                
+                <p class="text">
+                    Library setup: <code>const name = new RiftVisualizer("#idofelement","state"); </code> <br>
+                    Inputs:<br>
+                    1) The id of the html element you want the map to be in. <br>
+                    2) The state of the map that you want. 
+                    <br>
+                    (note: will add documentation for all the library functions here, didn't include for alpha release)
+                </p>
+
+            </div> -->
+
+            <h1 class="examplesIntro">Learn How To Use</h1>
+
+            <a class="documentationLink" href="documentation.html"><button class="documentationButton">Documentation</button> </a>
+            
+            <br>
+            
+            <h1 class="examplesIntro">Examples</h1>
+
+            <p class="introParagraph">Create Mode</p>
+
+            <div id="firstMap"></div>
+
+            <button id="getGameStateExampleOne" onClick="getGameState()" class="getGameStateButton">Get Game State</button>
+
+            <div id="copiedMapExampleOne"></div>
+
+            <br>
+            <div class="textPara">
+                <h3 class="paraHeader">Create Mode</h3>
+                <p class = "text">
+                    This can be used both as a user interaction element or a tool to help you develop your web app. This version of
+                    the map allows you to access most library functionality easily from the UI. This is very useful while developing with this library since it can make positioning
+                    elements (like champions and labels) much easier and faster.
+                    
+                    <br>
+                    <br>
+                    User side:
+                    <br>
+                    <br>
+                    This free creation mode lets users use most of the functionality of the library. User can:
+                    
+                    <ul class="list">
+                        <li>Add champions, drag them around, double click to change team, drag off map to delete</li>
+                        <li>Add labels on the map, drag them around, double click to change colour, drag off map to delete.</li>
+                        <li>Spawn all the structures and double click them to delete</li>
+                        <li>Spawn all the monsters and double click them to delete</li>
+                    </ul>
+                </p>
+                <p class="text">
+                    Developer side: <br><br>
+                    
+                    The developer can set up a gamestate here without using the library functions (less coding for you!) and then call the function
+                    <code> .rvGetGameStateJSON() </code>. This function returns a stringified object (JSON form) of the maps state. The developer can then save the object and pass in 
+                    the object to the function <code>.rvSetGameStateJSON(gameStateObject)</code> to generate the map that they created in createmode. This speeds up development with the library
+                    greatly because you can set up maps quickly without writing a lot of code! Add some things on the map and click on the Get Game State button! <br><br>
+
+                </p>
+                
+            </div>
+            <br>
+
+            <div class="textPara">
+                <h3 class="paraHeader"> JavaScript Code - <span class="para">Setting Up Create Mode Map</span></h3>
+                
+                <p class="code">
+
+                    <code>
+                        <span class="comment">//firstMap is the id of the HTML element this map will intialize in</span> <br>
+                        <span class="declaration">const</span> <span class="variable">newMap</span> = <span class="declaration">new</span> <span class="function">RiftVisualizer</span>(<span class="string">"#firstMap"</span>,<span class="string">"createState"</span>); <br>
+                        <span class="comment">//input to this function is the size of the map from 0 to 1</span> <br>
+                        <span class="variable">newMap</span>.<span class="function">rvCreateInterface</span>(<span class="number">0.4</span>);
+                    </code>
+
+                </p>
+
+            </div>
+
+            
+            <br>
+            <p class="introParagraph">Example Developer Gamestate</p>
+            <div id="gamestateExample"></div>    
+            <br>
+            <div class = "textPara">
+                <h3 class="paraHeader"> Map Visualizer</h3>
+                <p class = "text">
+                    Here is an example of a developer created game state using library functions. You can set up any game state you want by spawning and moving different champions, spawning
+                    towers, and spawning jungle camps (monsters). You can use labels to represent various important things in the game like the position of minion waves and wards, or use it
+                    as a caption for something you want to highlight. You can highlight specific objects on the map, for example here the champion Kayn and the monster Baron is highlighted. <br><br>
+                    Example Use Cases: <br>
+                   
+                    <ul>
+                        
+                        <li class="text">
+                            <a style = "color:rgb(0, 212, 250)"  href = "https://mobalytics.gg/blog/absolute-beginners-guide-to-league-of-legends/" target="_blank">Blogs</a> about League of Legends can use this library to visualize what they are trying
+                            to explain. This one can use this library to highlight different aspects like lanes and towers to explain this game to beginers. 
+                        </li>
+
+                        <li  class="text">
+                            This library can be used to visualize live matches as they are being played. <a style = "color:rgb(0, 212, 250)" href="https://lolesports.com/vod/106926282335055885/4/pq3454Gt2gY" target="_blank"> Lolesports.com </a>, the official
+                            website for this game, displays live stats while a professional game is being played. This library can visualize these stats. 
+                        </li>
+
+                        <li class="text">
+                            <a style = "color:rgb(0, 212, 250)"  href = "https://app.mobalytics.gg/lol/challenges" target="_blank"> Mobalytics </a> is a web app related to League of Legends and they
+                            have a challenge section where they give users a challenge to help improve their skills. You can use this library to create different gamestates and challenge/quiz users about what to do next.
+                            This can help users learn and improve on the game.
+                        </li>
+
+                    </ul>
+
+
+
+                </p>
+
+            </div>
+
+            <div class="textPara">
+                <h3 class="paraHeader"> JavaScript Code - <span class="para">Setting Up A Game State</span></h3>
+                <p class="text" style="text-decoration: underline;">Without Using .rvGetGameStateJSON and .rvSetGameStateJSON:</p>
+                <p class="code">
+                   
+                    <code >
+                    <span class="comment">//Library setup</span><br>
+                    <span class="declaration">const</span> <span class="variable">gamestateExample</span> = <span class="declaration">new</span> <span class="function">RiftVisualizer</span>(<span class="string">"#gamestateExample"</span>,<span class="string">"static"</span>); <br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvCreateInterface(<span class="number">0.4</span>)</span>;<br><br>
+                    <span class="comment">//blue side champions</span><br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Jayce"</span>,<span class="string">"blue"</span>,<span class="number">572</span>,<span class="number">162</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Vi"</span>,<span class="string">"blue"</span>,<span class="number">342</span>,<span class="number">220</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Vex"</span>,<span class="string">"blue"</span>,<span class="number">567</span>,<span class="number">385</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Caitlyn"</span>,<span class="string">"blue"</span>,<span class="number">457</span>,<span class="number">257</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Leona"</span>,<span class="string">"blue"</span>,<span class="number">802</span>,<span class="number">357.5</span>,<span class="variable">true</span>);<br><br>
+                    
+                    <span class="comment">//red team</span><br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Shen"</span>,<span class="string">"red"</span>,<span class="number">730</span>,<span class="number">145</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Nami"</span>,<span class="string">"red"</span>,<span class="number">902.5</span>,<span class="number">160</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Jinx"</span>,<span class="string">"red"</span>,<span class="number">1105</span>,<span class="number">215</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Zed"</span>,<span class="string">"red"</span>,<span class="number">1010</span>,<span class="number">307.5</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Kayn"</span>,<span class="string">"red"</span>,<span class="number">907.5</span>,<span class="number">500</span>,<span class="variable">true</span>);<br><br>
+                    
+                    <span class="comment">//structures</span><br>
+                    <span class="declaration">let</span> <span class="variable">structures</span> = [<span class="string">"bn1"</span>,<span class="string">"bn2"</span>,<span class="string">"btt3"</span>,<span class="string">"btt2"</span>,<span class="string">"btt1"</span>,<span class="string">"bmt3"</span>,<span class="string">"bmt2"</span>,<span class="string">"bbt3"</span>,<span class="string">"bbt2"</span>,<span class="string">"rn1"</span>,<span class="string">"rn2"</span>,<span class="string">"rti"</span>,<span class="string">"rmi"</span>,<span class="string">"rbi"</span>,<span class="string">"rmt3"</span>,<span class="string">"rmt2"</span>,<span class="string">"rmt1"</span>,<span class="string">"rbt3"</span>,<span class="string">"rbt2"</span>,<span class="string">"rtt3"</span>,<span class="string">"rtt2"</span>,<span class="string">"rtt1"</span>,<span class="string">"bmi"</span>,<span class="string">"bti"</span>,<span class="string">"bbi"</span>]<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnStructure</span>(<span class="variable">structures</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnMonsters</span>([<span class="string">"baron"</span>,<span class="string">"rbluebuff"</span>,<span class="string">"rgromp"</span>,<span class="string">"rwolves"</span>,<span class="string">"rraptors"</span>,<span class="string">"bredbuff"</span>,<span class="string">"bkrugs"</span>,<span class="string">"braptors"</span>,<span class="string">"bbluebuff"</span>]);<br><br>
+                    
+                    <span class="comment">//marker</span><br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Dragon Dead"</span>,<span class="string">"#ff3300"</span>,<span class="number">1157</span>,<span class="number">917</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Blue Team Minions Pushed"</span>,<span class="string">"aqua"</span>,<span class="number">1395</span>,<span class="number">702</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"ward"</span>,<span class="string">"yellow"</span>,<span class="number">652</span>,<span class="number">287</span>,<span class="variable">true</span>);<br>
+                    
+                    <span class="declaration">let</span> <span class="variable">exampleTwoChampions</span> = <span class="variable">gamestateExample</span>.<span class="function">rvGetSpawnedChampions()</span>;<br>
+                    <span class="declaration">let</span> <span class="variable">exampleTwoMonsters</span> = <span class="variable">gamestateExample</span>.<span class="function">rvGetSpawnedMonsters()</span>;<br>
+                    <span class="variable">gamestateExamples</span>.<span class="function">rvHighlight</span>(<span class="variable">exampleTwoChampions</span>[<span class="number">9</span>],<span class="string">"violet"</span>);<br>
+                    <span class="variable">gamestateExamples</span>.<span class="function">rvHighlight</span>(<span class="variable">exampleTwoMonsters</span>[<span class="number">0</span>],<span class="string">"yellow"</span>);<br>
+                    </code> 
+                </p>
+                <p class="text" style="text-decoration: underline;">Using .rvGetGameStateJSON and .rvSetGameStateJSON:</p> 
+                <p class="code">
+                    <code>
+                        <span class="comment">//Library setup</span><br>
+                        <span class="declaration">const</span> <span class="variable">gamestateExample</span> = <span class="declaration">new</span> <span class="function">RiftVisualizer</span>(<span class="string">"#gamestateExample"</span>,<span class="string">"static"</span>); <br>
+                        <span class="variable">gamestateExample</span>.<span class="function">rvCreateInterface(<span class="number">0.4</span>)</span>;<br><br>
+                        <span class="comment">//this object was retrieved and saved from a call of .rvGetGameStateJSON() after creating the map above in create mode</span> <br><br>                        
+                        <span class="declaration">const</span> <span class="variable">gameStateObject</span> = <span class="string">'{"champions":[{"name":"Jayce","team":"blue","x":572.5,"y":162.5,"movable":true},{"name":"Vi","team":"blue","x":342.5,"y":220,"movable":true},{"name":"Vex","team":"blue","x":567.5,"y":385,"movable":true},{"name":"Caitlyn","team":"blue","x":457.5,"y":287.5,"movable":true},{"name":"Leona","team":"blue","x":802.5,"y":357.5,"movable":true},{"name":"Shen","team":"red","x":730,"y":145,"movable":true},{"name":"Nami","team":"red","x":902.5,"y":160,"movable":true},{"name":"Jinx","team":"red","x":1105,"y":215,"movable":true},{"name":"Twisted Fate","team":"red","x":1010,"y":307.5,"movable":true},{"name":"Kayn","team":"red","x":907.5,"y":500,"movable":true}],"monsters":[{"name":"baron"},{"name":"rbluebuff"},{"name":"rgromp"},{"name":"rwolves"},{"name":"rraptors"},{"name":"bredbuff"},{"name":"bkrugs"},{"name":"braptors"},{"name":"bbluebuff"}],"structures":[{"name":"bn1"},{"name":"bn2"},{"name":"btt3"},{"name":"btt2"},{"name":"btt1"},{"name":"bmt3"},{"name":"bmt2"},{"name":"bbt3"},{"name":"bbt2"},{"name":"rn1"},{"name":"rn2"},{"name":"rti"},{"name":"rmi"},{"name":"rbi"},{"name":"rmt3"},{"name":"rmt2"},{"name":"rmt1"},{"name":"rbt3"},{"name":"rbt2"},{"name":"rtt3"},{"name":"rtt2"},{"name":"rtt1"},{"name":"bmi"},{"name":"bti"},{"name":"bbi"}],"markers":[{"text":"Dragon Dead","x":1157.5,"y":917.5,"color":"rgb(255, 51, 0)","movable":true},{"text":"Blue Team Minions Pushed","x":1395,"y":702.5,"color":"aqua","movable":true},{"text":"ward","x":652.5,"y":287.5,"color":"yellow","movable":true}]}'</span> <br><br>
+                        <span class="variable">gameStateExample</span>.<span class="function">rvSetGameStateJSON</span>(<span class="variable">gameStateObject</span>);
+
+                    </code>
+
+                </p>
+                
+            </div>
+
+            <br>
+            <p class="introParagraph">Jungle Clear Use Case (Animations)</p>
+            <button onclick="handleOnClick('prev')" class="nextButton">Prev</button>
+            <button onclick="handleOnClick('next')" class="nextButton">Next</button>
+            <div id="jungleExample">
+
+            </div>
+
+            <div class="textPara">
+                <h3 class="paraHeader">Moving Map Objects</h3>
+                <p class="text">
+                    This example shows the level 1 starting path for a jungler. This library visualizes what a player needs to do for the first few minutes in a game when they 
+                    are playing the champion Warwick in the jungle. Hit the button that says next to see the visualization. Notice the user cannot move the champion or label around, or delete the monsters. This is because
+                    these objects were created with moveable permission off and the map is in a state where the user cannot delete anything. <br><br>
+
+                    Web apps like <a style = "color:rgb(0, 212, 250)" href="https://jungler.gg/champions/warwick/" target="_blank">jungler.gg</a> specializes in showing jungle paths in the early game. This app 
+                    can use the Rift Visualizer library to make the jungle path they display more dynamic and interactive (scroll to the middle on the website thats linked to see). 
+                </p>
+            </div>
+            
+            <div class="textPara">
+                <h3 class="paraHeader"> JavaScript Code - <span class="para">Moving Objects</span></h3>
+                <p class="code">
+                <code>
+    <pre class="code">
+    <span class="comment">//library set up</span>
+    <span class="declaration">const</span> <span class="variable">jungleExample</span> =<span class="declaration"> new </span><span class="function">RiftVisualizer</span>(<span class="string">"#jungleExample"</span>,<span class="string">"static"</span>);
+    <span class="variable">jungleExample</span>.<span class="function">rvCreateInterface</span>(<span class="number">0.4</span>);
+    <span class="comment">//Disables Letting Users Delete Objects From Map</span>
+    <span class="variable">jungleExample</span>.<span class="function">rvUserDeletePermission</span>(<span class="variable">false</span>);
+    <span class="declaration">let</span> <span class="variable">pos</span> = <span class="number">0</span>;
+
+    <span class="comment">//spawning monsters</span>
+    <span class="variable">jungleExample</span>.<span class="function">rvSpawnMonsters</span>([<span class="string">"bredbuff"</span>,<span class="string">"bkrugs"</span>,<span class="string">"braptors"</span>,<span class="string">"bwolves"</span>,<span class="string">"bbluebuff"</span>
+    ,<span class="string">"bgromp"</span>,<span class="string">"tscuttle"</span>]);
+
+    <span class="comment">//spawning champion</span>
+    <span class="declaration">let </span><span class="variable">jgler</span> = <span class="variable">jungleExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Warwick"</span>,<span class="string">"blue"</span>,<span class="number">947</span>,<span class="number">1020</span>, <span class="variable">false</span>);
+
+    <span class="comment">//adding marker</span>
+    <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Start red"</span>,<span class="string" >"yellow"</span>,<span class="number">1030</span>,<span class="number">912.5</span>);
+
+    <span class="comment">//slide show code. Onclick function for the button prev and next</span>
+    <span class="declaration">function</span> <span class="function">handleOnClick</span>(<span class="variable">e</span>){
+        <span class="operator">if</span>(<span class="variable">e</span>===<span class="string">"prev"</span>){
+            <span class="variable">pos</span>--;
+            <span class="operator">if</span>(<span class="variable">pos</span><=<span class="number">0</span>){
+                <span class="variable">pos</span>=<span class="number">7</span>;
+            }  
+        }
+        <span class="operator">else</span>{
+            <span class="variable">pos</span>++;
+        }
+        <span class="function">moveMarkerExampleTwo</span>();
+    }
+
+    
+    <span class="declaration">function</span> <span class="function">moveMarkerExampleTwo</span>(){
+        <span class="variable">jungleExample</span>.<span class="function">rvDeleteAllMarkers</span>();
+        
+        <span class="operator">if</span>(<span class="variable">pos</span>===<span class="number">7</span>){
+            <span class="variable">pos</span>=<span class="number">0</span>;
+            <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Start Red"</span>,<span class="string">"yellow"</span>,<span class="number">1030</span>,<span class="number">912</span>,<span class="variable">false</span>);
+            <span class="comment">//moving champion</span>  
+            <span class="variable">jungleExample</span>.<span class="function">rvMoveChampion</span>(<span class="variable">jgler</span>,<span class="number">947.5</span>,<span class="number">1020</span>,<span class="variable">false</span>)
+        }
+        <span class="operator">else if</span>(<span class="variable">pos</span>===<span class="number">1</span>){
+            <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Clear Raptors"</span>,<span class="string">"yellow"</span>,<span class="number">892.5</span>,<span class="number">767.5</span>,<span class="variable">false</span>);
+            <span class="variable">jungleExample</span>.<span class="function">rvMoveChampion</span>(<span class="variable">jgler</span>,<span class="number">975</span>,<span class="number">855</span>,<span class="variable">false</span>)
+        }
+        <span class="operator">else if</span>(<span class="variable">pos</span>===<span class="number">2</span>){
+            <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Clear Wolves"</span>,<span class="string">"yellow"</span>,<span class="number">547.5</span>,<span class="number">705</span>,<span class="variable">false</span>);
+            <span class="variable">jungleExample</span>.<span class="function">rvMoveChampion</span>(<span class="variable">jgler</span>,<span class="number">545</span>,<span class="number">755</span>,<span class="variable">false</span>)
+        }
+        <span class="operator">else if</span>(<span class="variable">pos</span>===<span class="number">3</span>){
+            <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Clear Blue Buff"</span>,<span class="string">"yellow"</span>,<span class="number">530</span>,<span class="number">577</span>,<span class="variable">false</span>);
+            <span class="variable">jungleExample</span>.<span class="function">rvMoveChampion</span>(<span class="variable">jgler</span>,<span class="number">552.5</span>,<span class="number">630</span>,<span class="variable">false</span>)
+        }
+        <span class="operator">else if</span>(<span class="variable">pos</span>===<span class="number">4</span>){
+            <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Clear Gromp"</span>,<span class="string">"yellow"</span>,<span class="number">425</span>,<span class="number">510</span>,<span class="variable">false</span>);
+            <span class="variable">jungleExample</span>.<span class="function">rvMoveChampion</span>(<span class="variable">jgler</span>,<span class="number">480</span>,<span class="number">590</span>,<span class="variable">false</span>)
+        }
+        <span class="operator">else if</span>(<span class="variable">pos</span>===<span class="number">5</span>){
+            <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Clear Scuttle"</span>,<span class="string">"yellow"</span>,<span class="number">627.5</span>,<span class="number">465</span>,<span class="variable">false</span>);
+            <span class="variable">jungleExample</span>.<span class="function">rvMoveChampion</span>(<span class="variable">jgler</span>,<span class="number">725</span>,<span class="number">512.5</span>,<span class="variable">false</span>)
+        }
+        <span class="operator">else if</span>(<span class="variable">pos</span>===<span class="number">6</span>){
+            <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Gank Mid or Top"</span>,<span class="string">"yellow"</span>,<span class="number">627.5</span>,<span class="number">465</span>,<span class="variable">false</span>);
+            <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Top"</span>,<span class="string">"Aqua"</span>,<span class="number">492.5</span>,<span class="number">197.5</span>,<span class="variable">false</span>);
+            <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Mid"</span>,<span class="string">"Aqua"</span>,<span class="number">955</span>,<span class="number">662.5</span>,<span class="variable">false</span>);
+            <span class="variable">jungleExample</span>.<span class="function">rvMoveChampion</span>(<span class="variable">jgler</span>,<span class="number">490</span>,<span class="number">262.5</span>,<span class="variable">false</span>)
+        }
+    }                            
+    </pre>
+    </code>
+    </p>
+    </div>            
+        <br>
+        <p class="introParagraph">Multiple Size Maps</p>   
+        
+        <div class = "exampleFourMapOne" id="smallMap"></div>
+        <div class = "exampleFourMapTwo" id="smallMap2"></div>
+
+        <div class="textPara">
+            <h3 class="paraHeader">Multiple Map Sizes For All Your Web App Needs</h3>
+            <p class="text">
+                This library lets you create a dynamic map of any size up to a max 2000x1423. This allows it to be very flexible and can fit in your web app!
+            </p>
+        </div>
+
+        <div class="textPara">
+            <h3 class="paraHeader">JavaScript Code - Multiple Map Sizes</h3>
+            <p class="code">
+                <code>
+                
+                <span class="declaration">const</span> <span class="variable">gameStateObject</span> = <span class="string">'{"champions":[{"name":"Jinx","team":"blue","x":1407.5,"y":1177.5,"movable":true},{"name":"Nami","team":"blue","x":1195,"y":1205,"movable":true},{"name":"Yone","team":"blue","x":887.5,"y":710,"movable":true},{"name":"Ziggs","team":"red","x":1040,"y":617.5,"movable":true},{"name":"Jayce","team":"blue","x":372.5,"y":305,"movable":true},{"name":"Mundo","team":"red","x":515,"y":155,"movable":true},{"name":"Vayne","team":"red","x":1592.5,"y":1035,"movable":true},{"name":"Lulu","team":"red","x":1620,"y":817.5,"movable":true},{"name":"Nunu","team":"blue","x":510,"y":660,"movable":true},{"name":"Kayn","team":"red","x":1415,"y":712.5,"movable":true}],"monsters":[{"name":"baron"},{"name":"dragon"},{"name":"bgromp"},{"name":"bbluebuff"},{"name":"bwolves"},{"name":"braptors"},{"name":"bredbuff"},{"name":"bkrugs"},{"name":"rgromp"},{"name":"rbluebuff"},{"name":"rwolves"},{"name":"rraptors"},{"name":"rredbuff"},{"name":"rkrugs"},{"name":"tscuttle"},{"name":"bscuttle"}],"structures":[{"name":"bmt1"},{"name":"bmt2"},{"name":"bmt3"},{"name":"btt1"},{"name":"btt2"},{"name":"btt3"},{"name":"bbt1"},{"name":"bbt2"},{"name":"bbt3"},{"name":"bn1"},{"name":"bn2"},{"name":"rmt1"},{"name":"rmt2"},{"name":"rmt3"},{"name":"rtt1"},{"name":"rtt2"},{"name":"rtt3"},{"name":"rbt1"},{"name":"rbt2"},{"name":"rbt3"},{"name":"rn1"},{"name":"rn2"},{"name":"rti"},{"name":"rmi"},{"name":"rbi"},{"name":"bti"},{"name":"bmi"},{"name":"bbi"}],"markers":[]}'</span> <br><br>
+                
+                <span class="comment">//creating the map on the top</span> <br>
+                <span class="declaration">const</span> <span class="variable">smallMap</span> = <span class="declaration">new</span> <span class="function">RiftVisualizer</span>(<span class="string">"#smallMap"</span>,<span class="string">"static"</span>);<br>
+                <span class="variable">smallMap</span>.<span class="function">rvCreateInterface</span>(<span class="number">0.2</span>);<br>
+                <span class="variable">smallMap</span>.<span class="function">rvSetGameStateJSON</span>(<span class="variable">gameStateObject</span>);<br><br>
+                
+                <span class="comment">//creating the map on the bottom</span> <br>
+                <span class="declaration">const</span> <span class="variable">smallMap2</span> = <span class="declaration">new</span> <span class="function">RiftVisualizer</span>(<span class="string">"#smallMap2"</span>,<span class="string">"static"</span>);<br>
+                <span class="variable">smallMap2</span>.<span class="function">rvCreateInterface</span>(<span class="number">0.3</span>);<br>
+                <span class="variable">smallMap2</span>.<span class="function">rvSetGameStateJSON</span>(<span class="variable">gameStateObject</span>);<br>
+            </code>
+            </p>
+        </div><br>
+
+        <p class="introParagraph">Quiz Functionality Example</p>
+        <div class="textPara">
+            <h2 class="paraHeader">Quiz Time!</h2>
+            <p class="text">
+                You are playing vayne and your team has just won a team fight in the dragon pit. You aced the enemy team but sadly your top laner has died in the fight. There are 4 of you alive.
+                You have 3 items and your midlaner also has 3 items. Volibear still has smite up. What do you do next? Drag your champion (vayne) to the location that you should be after this team fight.
+            </p>
+        </div>
+        <button onclick="evaluateQuiz()" class="nextButton">Submit</button>
+        <button onclick="showAnswer()" class="nextButton">Show Answer</button>
+        <span class="answerBoxText" id="answerBox"></span>
+        <div id="quizMap"> 
+        </div>
+
+        <div class="textPara">
+            <h3 class="paraHeader">Quiz Template</h3>
+            <p class="text">
+                This library has a built in quiz functionality. This is great for educational web apps about League of Legends. The developer sets 
+                up a "correct zone" for champions and the user must drag one or several champions to their respective zones. This is great for quizzing users on their knowledge of the 
+                game because you can test them on what to do at a certain point in the game. <br><br>
+
+                Web apps like <a style = "color:rgb(0, 212, 250)" href="https://gamerzclass.com/games/league-of-legends/" target="_blank">gamerzclass.com</a> specialize in teaching people how to play
+                the game and offer lessons. This library functionality for quizzes can be used here to test users on their macro knowledge. 
+            </p>
+        </div>
+ 
+        <div class="textPara">
+            <h3 class="paraHeader">JavaScript Code - Creating A Quiz</h3>
+            <p class="code">
+                <code>
+
+    <span class="declaration">const</span> <span class="variable">gameStateObject</span> = <span class="string">'{"champions":[{"name":"Vayne","team":"blue","x":1080,"y":870,"movable":true},{"name":"Braum","team":"blue","x":1235,"y":770,"movable":false},{"name":"Volibear","team":"blue","x":1037.5,"y":730,"movable":false},{"name":"Anivia","team":"blue","x":892.5,"y":732.5,"movable":false}],"monsters":[{"name":"baron"}],"structures":[{"name":"bmt2"},{"name":"bmt3"},{"name":"btt1"},{"name":"btt2"},{"name":"btt3"},{"name":"bbt3"},{"name":"bn1"},{"name":"bn2"},{"name":"rmt2"},{"name":"rmt3"},{"name":"rtt2"},{"name":"rtt3"},{"name":"rbt2"},{"name":"rbt3"},{"name":"rn1"},{"name":"rn2"},{"name":"rti"},{"name":"rmi"},{"name":"rbi"},{"name":"bti"},{"name":"bmi"},{"name":"bbi"}],"markers":[{"text":"Won Team Fight At Dragon","x":1195,"y":977.5,"color":"violet","movable":false}]}';</span> <br><br>
+    <span class="comment">//library set up</span> <br>
+    <span class="declaration">const</span> <span class="variable">quizMap</span> = <span class="declaration">new</span> <span class="function">RiftVisualizer</span>(<span class="string">"#quizMap"</span>,<span class="string">"quiz"</span>);<br>
+    <span class="variable">quizMap</span>.<span class="function">rvCreateInterface</span>(<span class="number">0.4</span>);<br>
+    <span class="variable">quizMap</span>.<span class="function">rvSetGameStateJSON</span>(<span class="variable">gameStateObject</span>);<br><br>
+    
+    <span class="comment">//remove user deleting permission</span><br>
+    <span class="variable">quizMap</span>.<span class="function">rvUserDeletePermission</span>(<span class="variable">false</span>);<br><br>
+    
+    <span class="comment">//quiz set up</span><br>
+    <span class="variable">quizMap</span>.<span class="function">rvHighlight</span>(<span class="variable">quizMap</span>.<span class="function">rvGetSpawnedChampions</span>()[<span class="number">0</span>],<span class="string">"yellow"</span>);<br>
+    <span class="variable">quizMap</span>.<span class="function">rvSetQuizZone</span>(<span class="variable">quizMap</span>.<span class="function">rvGetSpawnedChampions</span>()[<span class="number">0</span>],<span class="number">595</span>,<span class="number">339</span>,<span class="number">891</span>,<span class="number">576</span>);<br><br>
+    <pre class="text">
+<span class="comment">//using jQuery</span>
+<span class="declaration">function</span> <span class="function">evaluateQuiz()</span>{
+    <span class="operator">if</span>(<span class="variable">quizMap</span>.<span class="function">rvEvaluateQuiz()</span>===<span class="variable">true</span>){
+        $(<span class="string">"#answerBox"</span>).<span class="function">text</span>(<span class="string">"Correct! You should do baron here."</span>)
+    }
+    <span class="operator">else</span>{
+        $(<span class="string">"#answerBox"</span>).<span class="function">text</span>(<span class="string">"Incorrect! Press show answer if you are stuck!"</span>)
+    }
+}
+
+<span class="declaration">function</span> <span class="function">showAnswer</span>(){
+    <span class="variable">quizMap</span>.<span class="function">rvMoveChampion</span>(<span class="variable">quizMap</span>.<span class="function">rvGetSpawnedChampions</span>()[<span class="number">0</span>],<span class="number">710</span>,<span class="number">422.5</span>);
+}
+    </pre>
+             
+                </code>
+            </p>
+        </div>
+
+    </div>
+       
+</body>
+</html>

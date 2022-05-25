@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href = "stylesExamples.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="heading"> Rift Visualizer Documentation </h1> 
+    <a class="homeButtonLink" href="example.html"><button class="homeButton">Home</button></a>
+    <div class="documentationBanner">
+       
+        <p class="introParagraph">Rift Visualizer Version v1.0.0 Documentation</p>
+        <br>
+        <h1 class="examplesIntro">Getting Started</h1><br>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeader">Creating your first map</h3>
+            <p class="text">
+                Before you get started and start using this library, there are a few things you should know and need to do before hand.<br><br>
+                1) Install jQuery <br>Firstly, this library uses jQuery for DOM manipulation so you need to include that in your html file. Put this line below in your html file:<br><br>
+                <code>&lt;<span class="declaration">script</span> <span class="variable">defer src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"</span>&gt;&lt;/</span><span class="declaration">script</span>&gt;</code><br><br>
+                2) Including Rift Visualizer Library <br><br>
+                Next, install the Rift Visualizer library from <a style = "color:rgb(0, 212, 250)" target="_blank" href="https://github.com/csc309-fall-2021/js-library-syedsh25/tree/main/pub">github</a>. Install the riftvisualizer.js file and pictures folder and put them in the same level in your project folder. After installing, in your html file put:<br><br>
+                <code>&lt;<span class="declaration">script</span> <span class="variable">defer type</span>=<span class="string">"text/javascript"</span><span class="variable"> src</span> = <span class="string">"{yourdirectory}/riftvisualizer.js"</span> &gt;&lt;/</span><span class="declaration">script</span>&gt;</code><br><br>
+                
+                3) Create an html element with an id.<br><br> 
+                
+                Put an html element with a unique ID in the area that you want your map. An instance of the library will operate inside this element: <br><br>
+                <code>&lt;<span class="declaration">div</span> <span class="variable">id</span>=<span class="string">"myFirstMap"</span>&gt; &lt;/<span class="declaration">div</span>&gt;</code> <br><br>
+
+                4) Initialize The Library<br><br>
+                In your javascript file for your project, initialize the library. The first argument is the 
+                id of the html element you want the library to instantiate in, the second is the type of map you want. There are 3 types: create state, static, and quiz. Let's intialize the map in create state (as seen in the examples). :<br><br>
+              
+                <code>
+                    <span class="declaration">const</span> <span class="variable">myFirstMap</span> = <span class="declaration">new</span> <span class="function">RiftVisualizer</span>(<span class="string">"#myFirstMap"</span>,<span class="string">"createState"</span>);<br><br>
+                </code>
+           
+                5) Spawn the map <br><br>
+
+                Now you can spawn a map using the rvCreateInterface function. The input is the scale of the map you want from 0 to 1. The largest map is 2000x1423 so you can scale down
+                from that. Let's create a map with a scale of 0.4 (800x570).<br><br>
+              
+                    <code>
+                        <span class="variable">myFirstMap</span>.<span class="function">rvCreateInterface</span>(<span class="number">0.4</span>);<br><br>
+                    </code>
+             
+                6) Lets add some objects to the map!<br><br>
+                You can add as many champions and labels as you want. You can also spawn any of the structures in the game as well as all the jungle monsters.<br><br> Note: the positions of the objects
+                you are placing are with respect to the 2000x1423 map even if you have a scaled version. You can use online image coordinate web apps to get specific coordinates or create a map in create mode from the UI and use rvGetGameStateJSON and 
+                rvSetGameStateJSON to avoid this (as seen in examples). 
+                <p class="code">
+                <code>
+                    <span class="comment">//adding champions</span><br>
+                    <span class="variable">myFirstMap</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Jayce"</span>,<span class="string">"blue"</span>,<span class="number">572</span>,<span class="number">162</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">myFirstMap</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Vi"</span>,<span class="string">"blue"</span>,<span class="number">342</span>,<span class="number">220</span>,<span class="variable">true</span>);<br><br>
+
+                    <span class="comment">//structures</span><br>
+                    <span class="declaration">let</span> <span class="variable">structures</span> = [<span class="string">"bn1"</span>,<span class="string">"bn2"</span>,<span class="string">"btt3"</span>,<span class="string">"btt2"</span>,<span class="string">"btt1"</span>,<span class="string">"bmt3"</span>,<span class="string">"bmt2"</span>,<span class="string">"bbt3"</span>,<span class="string">"bbt2"</span>,<span class="string">"rn1"</span>,<span class="string">"rn2"</span>,<span class="string">"rti"</span>,<span class="string">"rmi"</span>,<span class="string">"rbi"</span>,<span class="string">"rmt3"</span>,<span class="string">"rmt2"</span>,<span class="string">"rmt1"</span>,<span class="string">"rbt3"</span>,<span class="string">"rbt2"</span>,<span class="string">"rtt3"</span>,<span class="string">"rtt2"</span>,<span class="string">"rtt1"</span>,<span class="string">"bmi"</span>,<span class="string">"bti"</span>,<span class="string">"bbi"</span>]<br>
+                    <span class="variable">myFirstMap</span>.<span class="function">rvSpawnStructure</span>(<span class="variable">structures</span>);<br>
+                    <span class="comment">//monsters</span><br>
+                    <span class="variable">myFirstMap</span>.<span class="function">rvSpawnMonsters</span>([<span class="string">"baron"</span>,<span class="string">"rbluebuff"</span>,<span class="string">"rgromp"</span>,<span class="string">"rwolves"</span>,<span class="string">"rraptors"</span>,<span class="string">"bredbuff"</span>,<span class="string">"bkrugs"</span>,<span class="string">"braptors"</span>,<span class="string">"bbluebuff"</span>]);<br><br>
+                    
+                    <span class="comment">//add labels</span><br>
+                    <span class="variable">myFirstMap</span>.<span class="function">rvAddMarker</span>(<span class="string">"Dragon Dead"</span>,<span class="string">"#ff3300"</span>,<span class="number">1157</span>,<span class="number">917</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">myFirstMap</span>.<span class="function">rvAddMarker</span>(<span class="string">"Blue Team Minions Pushed"</span>,<span class="string">"aqua"</span>,<span class="number">1395</span>,<span class="number">702</span>,<span class="variable">true</span>);<br>
+                    <span class="variable">myFirstMap</span>.<span class="function">rvAddMarker</span>(<span class="string">"ward"</span>,<span class="string">"yellow"</span>,<span class="number">652</span>,<span class="number">287</span>,<span class="variable">true</span>);<br>                    
+                </code>
+                </p> 
+
+                <p class="text">
+                Your all set! These were the basics. Below is the full list of the API functions. There are a lot more things you can do!
+                </p>
+
+            </p>
+        </div><br>
+
+        <h1 class="examplesIntro">API Functions</h1><br>
+
+        <p class="introParagraph">Intializing Functions</p>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Constructor</h3>
+            <h3 class="functionHeader">RiftVisualizer("IdOfHTMLElement","stateOfMap")</h3>
+            <p class="code">
+                Example: 
+                <code>
+                    <span class="declaration">const</span> <span class="variable">myFirstMap</span> = <span class="declaration">new</span> <span class="function">RiftVisualizer</span>(<span class="string">"#myFirstMap"</span>,<span class="string">"createState"</span>);<br><br>                    
+                </code>
+                Input: Id of the html element you want map to instatiate in, the type of map you want.<br><br>
+
+                Types of Maps: <br>
+                1) "createState": map with the buttons as seen in example 1. Let's you spawn objects from the front-end.<br>
+                2) "static": map with no buttons, will spawn an empty image. <br>
+                3) "quiz": map with no buttons, will spawn an empty image. Use this if you want to create a quiz. <br>
+            </p>
+
+        </div>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Intialize Map</h3>
+            <h3 class="functionHeader">.rvCreateInterface(scale)</h3>
+            <p class="code">
+                Description: This function spawns a map in the HTML element specified from the constructor call.<br><br>
+                Example: <span class="variable">myFirstMap</span>.<span class="function">rvCreateInterface</span>(<span class="number">0.4</span>);<br><br>
+
+                Input: the scale of the map you want from 0 to 1. Scaled off of the max size of the original size of the map image 2000x1423. 
+            </p>
+        </div>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Setting Permissions</h3>
+            <h3 class="functionHeader">.rvUserDeletePermission(boolean)</h3>
+            <p class="code">
+
+                Description: This function enables or disables allowing the user to delete items off the map.<br><br>
+
+                Example: (Disabling deleting permssions)<br><span class="variable">myFirstMap</span>.<span class="function">rvUserDeletePermission</span>(<span class="variable">false</span>);<br><br>
+
+                Input: If the input is true, it will allow users to delete objects on the map. If its false, users cannot delete objects. By default, when a map is spawned, the user deleting permission
+                is set to true.
+            </p>
+        </div> <br>
+ 
+        <p class="introParagraph">Getting Map Information</p>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Getting Entire Map State</h3>
+            <h3 class="functionHeader">.rvGetGameState()</h3>
+            <p class="code">
+                Description: This function returns all of the spawned objects on the map as an object.<br><br>
+                Object: <code>{champions: Array(numChampions), monsters: Array(numMonsters), structures: Array(numStructures), markers: Array(numMarkers)}</code>
+
+            </p>
+        </div>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Getting Specific Objects</h3>
+            <h3 class="functionHeader">.rvGetSpawnedChampions()</h3>
+            <h3 class="functionHeader">.rvGetSpawnedMonsters()</h3>
+            <h3 class="functionHeader">.rvGetSpawnedStructures()</h3>
+            <h3 class="functionHeader">.rvGetSpawnedMarkers()</h3>
+            <p class="code">
+                Description: This function returns an array of all the spawned objects of the specfied type.<br><br>
+                Champion Object: <code>{
+                    "championElement": html Element,
+                    "name": "champion name",
+                    "id": "html element id",
+                    "x": "left position",
+                    "y": "top position",
+                    "team": "color of team",
+                    "movable": boolean for it object is movable or not
+                }</code><br><br>
+
+                Monster Object: <code>{
+                    "monsterElement": html element,
+                    "index": index in library array,
+                    "name": "name of monster"
+                }</code> <br><br>
+
+                Structure Object: 
+                <code>
+                    {
+                        "structure": html element,
+                        "index": index in library array,
+                        "name": name of structure
+                    }                    
+                </code><br><br>
+
+                Marker Object: 
+                <code>
+                    {
+                        "markerElement": html element,
+                        "text": "custom text",
+                        "left": left position,
+                        "top": top position,
+                        "id": "html id",
+                        "movable": boolean if object is movable or not
+                    }
+                </code>
+
+
+            </p>
+        </div>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Getting Game State JSON Object</h3>
+            <h3 class="functionHeader">.rvGetGameStateJSON()</h3>
+            <p class="code">
+                Description: This function lets you get a stringified version of the .rvGetGameState() output. This string that is returned can be passed into the function
+                .rvSetGameStateJSON() to create a copy of a map easily. Using these two functions together speeds up developed greatly since you can position everything with the mouse 
+                in create mode and then get the game state and save it as a variable or in a file. Then use that object to create a map instead of using library functions to position 
+                everything. <br><br>
+
+                Example: 
+                <code>
+                    <span class="variable">gameStateExample</span>.<span class="function">rvGetGameStateJSON</span>();<br><br>
+                </code>
+
+                Example Output: <code>
+                 <span class="string">'{"champions":[{"name":"Jayce","team":"blue","x":572.5,"y":162.5,"movable":true},{"name":"Vi","team":"blue","x":342.5,"y":220,"movable":true},{"name":"Vex","team":"blue","x":567.5,"y":385,"movable":true},{"name":"Caitlyn","team":"blue","x":457.5,"y":287.5,"movable":true},{"name":"Leona","team":"blue","x":802.5,"y":357.5,"movable":true},{"name":"Shen","team":"red","x":730,"y":145,"movable":true},{"name":"Nami","team":"red","x":902.5,"y":160,"movable":true},{"name":"Jinx","team":"red","x":1105,"y":215,"movable":true},{"name":"Twisted Fate","team":"red","x":1010,"y":307.5,"movable":true},{"name":"Kayn","team":"red","x":907.5,"y":500,"movable":true}],"monsters":[{"name":"baron"},{"name":"rbluebuff"},{"name":"rgromp"},{"name":"rwolves"},{"name":"rraptors"},{"name":"bredbuff"},{"name":"bkrugs"},{"name":"braptors"},{"name":"bbluebuff"}],"structures":[{"name":"bn1"},{"name":"bn2"},{"name":"btt3"},{"name":"btt2"},{"name":"btt1"},{"name":"bmt3"},{"name":"bmt2"},{"name":"bbt3"},{"name":"bbt2"},{"name":"rn1"},{"name":"rn2"},{"name":"rti"},{"name":"rmi"},{"name":"rbi"},{"name":"rmt3"},{"name":"rmt2"},{"name":"rmt1"},{"name":"rbt3"},{"name":"rbt2"},{"name":"rtt3"},{"name":"rtt2"},{"name":"rtt1"},{"name":"bmi"},{"name":"bti"},{"name":"bbi"}],"markers":[{"text":"Dragon Dead","x":1157.5,"y":917.5,"color":"rgb(255, 51, 0)","movable":true},{"text":"Blue Team Minions Pushed","x":1395,"y":702.5,"color":"aqua","movable":true},{"text":"ward","x":652.5,"y":287.5,"color":"yellow","movable":true}]}'</span> <br><br>
+                </code>
+            </p>
+        </div>
+        <br>
+
+        <p class="introParagraph">Setting Game State</p>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Setting Game State JSON Object</h3>
+            <h3 class="functionHeader">.rvSetGameStateJSON(gameStateObject)</h3>
+            <p class="code">
+                Description: This function lets you easily create a map with spawned objects from a stringified game state object retrevied from .rvGetGameStateJSON().<br><br>
+
+                Example:<br>
+                <code>
+                
+                <span class="variable">gameStateObject</span> = <span class="string">'{"champions":[{"name":"Jayce","team":"blue","x":572.5,"y":162.5,"movable":true},{"name":"Vi","team":"blue","x":342.5,"y":220,"movable":true},{"name":"Vex","team":"blue","x":567.5,"y":385,"movable":true},{"name":"Caitlyn","team":"blue","x":457.5,"y":287.5,"movable":true},{"name":"Leona","team":"blue","x":802.5,"y":357.5,"movable":true},{"name":"Shen","team":"red","x":730,"y":145,"movable":true},{"name":"Nami","team":"red","x":902.5,"y":160,"movable":true},{"name":"Jinx","team":"red","x":1105,"y":215,"movable":true},{"name":"Twisted Fate","team":"red","x":1010,"y":307.5,"movable":true},{"name":"Kayn","team":"red","x":907.5,"y":500,"movable":true}],"monsters":[{"name":"baron"},{"name":"rbluebuff"},{"name":"rgromp"},{"name":"rwolves"},{"name":"rraptors"},{"name":"bredbuff"},{"name":"bkrugs"},{"name":"braptors"},{"name":"bbluebuff"}],"structures":[{"name":"bn1"},{"name":"bn2"},{"name":"btt3"},{"name":"btt2"},{"name":"btt1"},{"name":"bmt3"},{"name":"bmt2"},{"name":"bbt3"},{"name":"bbt2"},{"name":"rn1"},{"name":"rn2"},{"name":"rti"},{"name":"rmi"},{"name":"rbi"},{"name":"rmt3"},{"name":"rmt2"},{"name":"rmt1"},{"name":"rbt3"},{"name":"rbt2"},{"name":"rtt3"},{"name":"rtt2"},{"name":"rtt1"},{"name":"bmi"},{"name":"bti"},{"name":"bbi"}],"markers":[{"text":"Dragon Dead","x":1157.5,"y":917.5,"color":"rgb(255, 51, 0)","movable":true},{"text":"Blue Team Minions Pushed","x":1395,"y":702.5,"color":"aqua","movable":true},{"text":"ward","x":652.5,"y":287.5,"color":"yellow","movable":true}]}'</span> <br><br>
+                <span class="variable">gameStateExample</span>.<span class="function">rvSetGameStateJSON</span>(<span class="variable">gameStateObject</span>);<br><br>
+                </code>
+            </p>
+        </div>
+        <br>
+
+        <p class="introParagraph">Interacting with Champion Objects</p>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Spawning Champions</h3>
+            <h3 class="functionHeader">.rvSpawnChampion("name","team",x,y,movable)</h3>
+            <p class="code">
+                Description: This function lets you spawn a champion on the map at a given position (x,y) with respect to the 2000x1423 size map. The position is scaled down inside the 
+                library later. It will spawn a champion with a name and team and there is a boolean that lets you allow the user to move it or not.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="comment">//Movable Champion</span><br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Jayce"</span>,<span class="string">"blue"</span>,<span class="number">572</span>,<span class="number">162</span>,<span class="variable">true</span>);<br>
+                    <span class="comment">//Not Movable Champion</span><br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnChampion</span>(<span class="string">"Jayce"</span>,<span class="string">"blue"</span>,<span class="number">572</span>,<span class="number">162</span>,<span class="variable">false</span>);<br>
+                </code><br><br>
+
+                Input: Takes 2 strings represeting the name and team, two numbers for the x and y position with respect to 2000x1423 map, and a boolean that specifies if the user
+                can move this champion. <br><br>
+                Output: Gives you back the champion object (see Getting Specific Objects).
+            </p>
+        </div>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Deleteing Champions</h3>
+            <h3 class="functionHeader">.rvDeleteOneChampion(championObject)</h3>
+            <p class="code">
+                Description: This function lets you delete a spawned champion from the map.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="comment">//championObject retrieved from .rvGetSpawnedChampions()[index]</span><br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvDeleteOneChampion</span>(<span class="variable">championObject</span>);<br>
+                </code><br><br>
+
+                Input: The champion object of the champion you want to delete. Can be retreived from .rvGetSpawnedChampions()<br><br>
+               
+            </p>
+
+            <h3 class="functionHeader">.rvDeleteAllChampions()</h3>
+            <p class="code">
+                Description: This function lets you delete all spawned champion from the map.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvDeleteAllChampions</span>();<br>
+                </code><br><br>
+
+               
+            </p>
+        </div>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Moving (animating) Champions</h3>
+            <h3 class="functionHeader">.rvMoveChampion(championObject,x,y)</h3>
+            <p class="code">
+                Description: This function lets you animate the movement of a champion.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="comment">//moving champion</span><br>
+                    <span class="variable">jungleExample</span>.<span class="function">rvMoveChampion</span>(<span class="variable">jgler</span>,<span class="number">947.5</span>,<span class="number">1020</span>)                    
+                </code><br><br>
+
+                Input: The champion object of the champion you want to delete. Can be retreived from .rvGetSpawnedChampions(), the new (x,y) position of the champion with respect
+                to 2000x1423 map<br><br>
+               
+            </p>
+        </div> <br>
+
+        <p class="introParagraph">Interacting with Marker Objects</p>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Spawning Markers</h3>
+            <h3 class="functionHeader"> .rvAddMarker("label","color",x,y, movable)</h3>
+            <p class="code">
+                Description: This function lets you spawn a marker on the map at a given position (x,y) with respect to the 2000x1423 size map. The position is scaled down inside the 
+                library later. It will spawn a marker with a label and color and there is a boolean that lets you allow the user to move it or not.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="comment">//Movable Marker</span><br>
+                    <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Clear Gromp"</span>,<span class="string">"yellow"</span>,<span class="number">425</span>,<span class="number">510</span>,<span class="variable">true</span>);<br>
+                    <span class="comment">//Not Movable Marker</span><br>
+                    <span class="variable">jungleExample</span>.<span class="function">rvAddMarker</span>(<span class="string">"Clear Gromp"</span>,<span class="string">"yellow"</span>,<span class="number">425</span>,<span class="number">510</span>,<span class="variable">false</span>);
+                </code><br><br>
+
+                Input: Takes 2 strings represeting the name and colour, two numbers for the x and y position with respect to 2000x1423 map, and a boolean that specifies if the user
+                can move this marker. <br><br>
+                Output: Gives you back the marker object (see Getting Specific Objects).
+            </p>
+        </div>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Deleteing Markers</h3>
+            <h3 class="functionHeader">.rvDeleteMarker(markerObject)</h3>
+            <p class="code">
+                Description: This function lets you delete a spawned marker from the map.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="comment">//markerObject retrieved from .rvGetSpawnedMarkers()[index]</span><br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvDeleteMarker</span>(<span class="variable">markerObject</span>);<br>
+                </code><br><br>
+
+                Input: The champion object of the champion you want to delete. Can be retreived from .rvGetSpawnedChampions()<br><br>
+               
+            </p>
+
+            <h3 class="functionHeader">.rvDeleteAllMarkers()</h3>
+            <p class="code">
+                Description: This function lets you delete all spawned markers from the map.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvDeleteAllMarkers</span>();<br>
+                </code><br><br>
+
+               
+            </p>
+        </div>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Changing Marker Text</h3>
+            <h3 class="functionHeader"> .rvChangeMarkerText(markerObject, "text")</h3>
+            <p class="code">
+                Description: This function lets you edit the text of a spawned marker<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="variable">gameStateExample</span>.<span class="function">rvChangeMarkerText</span>(<span class="variable">markerObject</span>,<span class="string">"changed the text!"</span>);
+                </code><br><br>
+
+                Input: Takes the marker object of the marker you want to edit and the new text.<br><br>
+               
+            </p>
+        </div>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Moving (animating) Markers</h3>
+            <h3 class="functionHeader">.rvMoveMarker(markerObject,x,y)</h3>
+            <p class="code">
+                Description: This function lets you animate the movement of a marker.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="comment">//moving marker</span><br>
+                    <span class="variable">jungleExample</span>.<span class="function">rvMoveMarker</span>(<span class="variable">markerObject</span>,<span class="number">947.5</span>,<span class="number">1020</span>)                    
+                </code><br><br>
+
+                Input: The marker object of the marker you want to delete. Can be retreived from .rvGetSpawnedMarkers(), the new (x,y) position of the marker with respect
+                to 2000x1423 map<br><br>
+               
+            </p>
+        </div> <br>
+
+        <p class="introParagraph">Interacting with Structure Objects</p>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Spawning Structures</h3>
+            <h3 class="functionHeader">.rvSpawnStructure(Array of structures)</h3>
+            <p class="code">
+                Description: This function lets you spawn any of the 28 structures in League of Legends on the map.<br><br>
+                Example: <br>
+                <code>
+                    <span class="declaration">let</span> <span class="variable">structures</span> = [<span class="string">"bn1"</span>,<span class="string">"bn2"</span>,<span class="string">"btt3"</span>,<span class="string">"btt2"</span>,<span class="string">"btt1"</span>,<span class="string">"bmt3"</span>,<span class="string">"bmt2"</span>,<span class="string">"bbt3"</span>,<span class="string">"bbt2"</span>,<span class="string">"rn1"</span>,<span class="string">"rn2"</span>,<span class="string">"rti"</span>,<span class="string">"rmi"</span>,<span class="string">"rbi"</span>,<span class="string">"rmt3"</span>,<span class="string">"rmt2"</span>,<span class="string">"rmt1"</span>,<span class="string">"rbt3"</span>,<span class="string">"rbt2"</span>,<span class="string">"rtt3"</span>,<span class="string">"rtt2"</span>,<span class="string">"rtt1"</span>,<span class="string">"bmi"</span>,<span class="string">"bti"</span>,<span class="string">"bbi"</span>]<br>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnStructure</span>(<span class="variable">structures</span>);<br>                    
+                </code><br>
+                This function takes a string array of the structures you want to spawn. The structures are encoded in a way where each character represents something.<br><br>
+                Input:<br><br>Normal Towers:<br> The string format is 
+                (team)(lane)t(tier). So for example, if you want to spawn red side top tier 3 tower, the string would be "rtt3". <br><br>
+                Nexus towers:<br> String format is (team)n(1or2). For example, if you wanted to spawn the blue side nexus tower thats on the left, the string would be "bn1"<br><br>
+
+                Inhibitors:<br>
+                The string format is (team)(lane)i. For example, if you wanted to spawn the red side mid inhibitor, the string would be "rmi"
+
+            </p>
+        </div>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Deleteing Structures</h3>
+            <h3 class="functionHeader">.rvDeleteStructure(Array of Structures to Delete)</h3>
+            <p class="code">
+                Description: This function lets you delete a spawned structures from the map.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvDeleteStructure</span>([<span class="string">"bn1"</span>,<span class="string">"bn2"</span>,<span class="string">"btt3"</span>,<span class="string">"btt2"</span>,<span class="string">"btt1"</span>,<span class="string">"bmt3"</span>,<span class="string">"bmt2"</span>,<span class="string">"bbt3"</span>,<span class="string">"bbt2"</span>,<span class="string">"rn1"</span>,<span class="string">"rn2"</span>,<span class="string">"rti"</span>,<span class="string">"rmi"</span>,<span class="string">"rbi"</span>,<span class="string">"rmt3"</span>,<span class="string">"rmt2"</span>,<span class="string">"rmt1"</span>,<span class="string">"rbt3"</span>,<span class="string">"rbt2"</span>,<span class="string">"rtt3"</span>,<span class="string">"rtt2"</span>,<span class="string">"rtt1"</span>,<span class="string">"bmi"</span>,<span class="string">"bti"</span>,<span class="string">"bbi"</span>]);<br>
+                </code><br><br>
+
+                Input: A string array of all of the structures you want to delete off the map<br>
+               
+            </p>
+
+            <h3 class="functionHeader">.rvDeleteAllStructures()</h3>
+            <p class="code">
+                Description: This function lets you delete all spawned structures from the map.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvDeleteAllStructures</span>();<br>
+                </code><br><br>
+            </p>
+        </div><br>
+
+        <p class="introParagraph">Interacting with Monster Objects</p>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Spawning Monsters</h3>
+            <h3 class="functionHeader">.rvSpawnStructure(Array of monsters)</h3>
+            <p class="code">
+                Description: This function lets you spawn any of the 16 monsters in League of Legends on the map.<br><br>
+                Example: <br>
+                <code>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvSpawnMonsters</span>([<span class="string">"baron"</span>,<span class="string">"rbluebuff"</span>,<span class="string">"rgromp"</span>,<span class="string">"rwolves"</span>,<span class="string">"rraptors"</span>,<span class="string">"bredbuff"</span>,<span class="string">"bkrugs"</span>,<span class="string">"braptors"</span>,<span class="string">"bbluebuff"</span>,<span class="string">"tscuttle"</span>,<span class="string">"bscuttle"</span>]);<br><br>                  
+                </code><br>
+                This function takes a string array of the monsters you want to spawn. The structures are encoded in a way where each the starting character represents something for common monsters.<br><br>
+                Input:<br><br>Epic Monsters:<br> For Epic Monsters like dragon and baron, the string format is just "dragon" and "baron" <br><br>
+                Jungle Monsters:<br> For the rest of the monsters, the string format is (team)(nameofmonster). So for example if you wanted to spawn red side raptors, the string would be 
+                "rraptors"<br><br>
+                Scuttle Crab: <br>
+                If you want to spawn a scuttle crab, the string format is (t or b)scuttle. For example, if you want to spawn top side scuttle, the string would be "tscuttle"
+
+            </p>
+        </div>
+
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Deleteing Monsters</h3>
+            <h3 class="functionHeader">.rvDeleteMonster(Array of Monsters to Delete)</h3>
+            <p class="code">
+                Description: This function lets you delete spawned monsters from the map.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvDeleteStructure</span>([<span class="string">"baron"</span>,<span class="string">"bbluebuff"</span>,<span class="string">"rgromp"</span>]);<br>
+                </code><br><br>
+
+                Input: A string array of all of the monsters you want to delete off the map<br>
+               
+            </p>
+
+            <h3 class="functionHeader">.rvDeleteAllStructures()</h3>
+            <p class="code">
+                Description: This function lets you delete all spawned monsters from the map.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="variable">gamestateExample</span>.<span class="function">rvDeleteAllMonsters</span>();<br>
+                </code><br><br>
+            </p>
+        </div><br>
+
+        <p class="introParagraph">Highlighting Map Objects</p>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">High Light Any Map Object</h3>
+            <h3 class="functionHeader">.rvHighlight(map object)</h3>
+            <p class="code">
+                Description: This function lets you highlight any of the spawned objects on the map.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="comment">//highlighting the first spawned champion violet</span><br>   
+                    <span class="variable">gamestateExamples</span>.<span class="function">rvHighlight</span>(<span class="function">gameStateExamples.rvGetSpawnedChampions</span>()[<span class="number">0</span>],<span class="string">"violet"</span>);<br>
+                </code><br><br>
+
+                Input: A object on the map (champion object, marker object, mosnter object, structure object) and the color you want the highlight to be<br>
+               
+            </p>
+
+            <h3 class="functionHeader">.rvRemoveHighLight(map object)</h3>
+            <p class="code">
+                Description: This function lets you remove the highlight on the map object.<br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="comment">//removing the highlighting the first spawned champion</span><br> 
+                    <span class="variable">gamestateExamples</span>.<span class="function">rvRemoveHighLight</span>(<span class="function">gameStateExamples.rvGetSpawnedChampions</span>()[<span class="number">0</span>]);<br>
+                </code><br><br>
+            </p>
+        </div><br>
+        
+        <p class="introParagraph">Quiz Functionality</p>
+        <div class="textParaDocumentation">
+            <h3 class="paraHeaderDocumentation">Add Your Own Quiz</h3>
+            <h3 class="functionHeader">.rvSetQuizZone(championObject,x1,y1,x2,y2)</h3>
+            <p class="code">
+                Description: This function lets you create an interactive quiz on the map. The user has to move champions to the correct position given some prompt. This function 
+                lets you create a correct zone for all of the champions that are a part of your quiz. The zone is a rectangle and you need to give the coordinates for the 
+                opposite diagonal points.    <br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="comment">//setting the correct zone for the first spawned champion</span><br>   
+                    <span class="variable">quizMap</span>.<span class="function">rvSetQuizZone</span>(<span class="variable">quizMap</span>.<span class="function">rvGetSpawnedChampions</span>()[<span class="number">0</span>],<span class="number">595</span>,<span class="number">339</span>,<span class="number">891</span>,<span class="number">576</span>);<br><br>
+                </code><br>
+
+                Input: A champion object and 2 points, (x1,y1),(x2,y2) with respect to 2000x1423, of a rectangle on the map. These points must be on the same digaonal.
+               
+            </p>
+
+            <h3 class="functionHeader">.rvEvaluateQuiz()</h3>
+            <p class="code">
+                Description: This function evaluates the position of all of the champion's that are part of the quiz. <br><br>
+
+                Example:<br> 
+                <code>
+                    <span class="variable">gamestateExamples</span>.<span class="function">rvEvaluateQuiz</span>();<br>
+                </code><br>
+                Output: It returns true if all of the champions are in the correct
+                zone or returns an array of the misplaced champions.
+            </p>
+        </div><br>        
+
+    </div>
+</body>
+</html>
